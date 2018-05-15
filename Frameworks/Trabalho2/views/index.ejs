@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Estados</title>
+</head>
+<body>
+
+  <ul class="estados">
+  <% for(var i=0; i<estados.length; i++) {%>
+    <li class="estado">
+      <span><%= estados[i].nome %></span>
+      <span><%= estados[i].populacao %></span>
+      <span><%= estados[i].pib %></span>
+    </li>
+  <% } %>
+  </ul>
+
+  <form action="/estados" method="POST">
+    <input type="text" placeholder="estado" name="estado">
+    <input type="number" placeholder="populacao" name="populacao">
+    <input type="number" placeholder="pib" name="pib">
+    <button type="submit">Submit</button>
+  </form>
+
+  <div>
+  <h2>Replace</h2>
+  <button id="update"> </button>
+  </div>
+ 
+ <div>
+  <h2>Delete</h2>
+  <button id="delete">Unquote </button>
+</div>
+
+  <!-- ... -->
+  <script src="main.js"></script>
+
+</body>
+</html>
