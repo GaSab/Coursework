@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const estadoController = require('./controllers/estado');
+var fs = require('fs');
+var morgan = require('morgan');
+var path = require('path');
 //sync mongoose
 mongoose.connect('mongodb://localhost:27017/trabalho2');
 const app = express();
@@ -16,19 +19,18 @@ var port = process.env.PORT || 3000;
 
 var router = express.Router();
 
-//ejs
-app.set('view engine', 'ejs');
-//main
-app.use(express.static('public'));
 
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 //---------------------------------------------------------------------------------API-----------------------------------------
 
-
+app.get('/', function (req, res) {
 // Initial dummy route for testing
 // http://localhost:3000/api
 router.get('/', function(req, res) {
-  res.json({ message: 'You are running dangerously low on beer!' });
+  res.json({ message: 'onde estão os estados?' });
 });
 
 
@@ -58,13 +60,15 @@ var estadoRotaPib = router.route('/estados/:estado_id/pib')
 
 
 
-
 // Register all our routes with /api
 app.use('/api', router);
+});
 
 //-----------------------------------------------------------------------APLICACAO----------------------------------------------------------------------
 
 
+
+  
 
 
 
