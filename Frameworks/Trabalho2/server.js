@@ -22,9 +22,9 @@ var router = express.Router();
 
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+app.use(morgan('combined', {stream: accessLogStream}));
 app.get('/', function (req, res) {
-  res.send(morgan(':method :url :status :res[content-length] - :response-time ms'));
+  res.send(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]'));
 });
 
 //---------------------------------------------------------------------------------API-----------------------------------------
@@ -41,7 +41,6 @@ router.get('/', function(req, res) {
 var estadosRota = router.route('/estados')
   .post(estadoController.postEstados) //POST
   .get(estadoController.getEstados);    //GET GERAL
-
 
 //recupera especifico
 //nova rota
