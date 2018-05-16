@@ -23,10 +23,13 @@ var router = express.Router();
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+app.get('/', function (req, res) {
+  res.send(morgan(':method :url :status :res[content-length] - :response-time ms'));
+});
 
 //---------------------------------------------------------------------------------API-----------------------------------------
 
-app.get('/', function (req, res) {
+
 // Initial dummy route for testing
 // http://localhost:3000/api
 router.get('/', function(req, res) {
@@ -60,15 +63,12 @@ var estadoRotaPib = router.route('/estados/:estado_id/pib')
 
 
 
+
 // Register all our routes with /api
 app.use('/api', router);
-});
 
 //-----------------------------------------------------------------------APLICACAO----------------------------------------------------------------------
 
-
-
-  
 
 
 
