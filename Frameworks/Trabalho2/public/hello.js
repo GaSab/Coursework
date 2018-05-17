@@ -1,7 +1,8 @@
-angular.module('demo', [])
-.controller('Hello', function($scope, $http) {
-    $http.get('http://rest-service.guides.spring.io/greeting').
-        then(function(response) {
-            $scope.greeting = response.data;
-        });
-});
+window.onload = function() {
+
+	var http = new XMLHttpRequest();
+	http.open('GET', 'localhost:3000/api/estados', true);
+	http.send();
+
+	console.log(http);
+}

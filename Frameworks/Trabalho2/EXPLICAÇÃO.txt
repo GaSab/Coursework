@@ -1,0 +1,53 @@
+/---------------------------------------------------------------BASICO-----------------------------------------------------------------------\
+O arquivo server.js contem o codigo fonte do servidor da aplicação.
+O servidor roda na porta 3000 fornece uma API para comunicação com os dados da seguinte maneira:
+	no caminho 'localhost:3000/api/estados' são fornecidas as seguintes chamadas:
+		GET que recupera todos os elementos inseridos
+		POST para entrar um novo dado
+	no caminho 'localhost:3000/api/estados/(id do registro do estado na tabela)' tem as seguinte chamadas:
+		GET para recuperar os dados daquele estado
+		DELETE para retirar aquele estado da tabela
+	no caminho 'localhost:3000/api/estados/(id do registro do estado na tabela)/pop' tem as seguintes chamadas:
+		PUT para atualizar a populacao da entrada do id que foi fornecido
+	no caminho 'localhost:3000/api/estados/(id do registro do estado na tabela)/pib' tem as seguintes chamadas:
+		PUT para atualizar ao pib da entrada do id que foi fornecido
+
+O arquivo estado.js na pasta models implementa o schema do banco
+O arquivo estado.js na pasta controllers fornece os controllers das chamadas da API
+O morgan faz o log das operações em um arquivo do padrão apache chamado access na pasta principal do projeto
+Os dados registrados pelo morgan en ordem são: endereço da aplicação remota, usuario remoto, data, metodo chamado, url, versão http, status e resposta
+
+A exibição do front esta no arquivo index.html na pasta public
+
+O arquivo server está escrito como se o mongodb estivesse rodando em localhost://localhost:27017/trabalho2 (configurar o mongo de acordo, ou mudar no codigo do server)
+
+/-------------------------------------------------------como rodar---------------------------------------------------------------------------\
+
+Inicie o mongoDB
+	Ir na pasta /bin na pasta de instalação do mongo e dar um mongod --dbpath (path da pasta de projeto/data) , esse path pode ser mudado caso você inicie o mongo em outra pasta
+
+Rodar o Server.JS
+
+Abrir o arquivo index.html
+
+
+
+/-------------------------------------------------------o que funciona------------------------------------------------------------------------\
+
+Inserir novos dados na tabela pela pagina HTML
+A API toda funciona como pode ser verificado por qualquer programa que teste APIs (no meu caso usei o postman para testar), então todas as chamadas podem ser feitas 
+
+
+/----------------------------------------------------------o que está faltando----------------------------------------------------------------\
+
+Não consegui fazer o google charts pegar o JSON através do Methodo GET da api para que eu pudesse gerar as tabela
+
+Não descobri como inputar os dados dos formularios para as funções de update
+
+Não descobri como fazer a o delete de um elemento a partir da entrada do nome no estado no formulario (talvez seja possivel com jade).
+
+
+///////-----------------------------------------------onde mais tem o projeto-----------------------------------------------------------\\\\\\\
+
+
+O projeto tambem pode ser encontrado no github nesse endereço: https://github.com/GaSab/Coursework/tree/master/Frameworks/Trabalho2	
